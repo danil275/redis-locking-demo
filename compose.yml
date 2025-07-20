@@ -1,0 +1,29 @@
+services:
+  php:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    container_name: demo_php
+    restart: unless-stopped
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - redis
+    environment:
+      APP_ENV: dev
+
+  redis:
+    image: redis:alpine
+    container_name: demo_redis
+    ports:
+      - ":${REDIS_PORT}"
+
+  postgres:
+    image: postgres:16
+    container_name: demo_postgres
+    environment:
+      POSTGRES_DB: demo
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - ":5432"
