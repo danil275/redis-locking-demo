@@ -1,0 +1,10 @@
+{
+    "name": "danil275/redis-locking-demo",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Danil275\\RedisLockingDemo\\": "src/"
+        }
+    },
+    "require": {}
+}
